@@ -1,0 +1,31 @@
+body{
+    background-color: black;
+    color: white;
+    font-family: 'Inconsolata', monospace;
+    text-align: center;
+}
+h1{
+    color: rgb(162, 236, 52);
+}
+ul{
+    list-style: none;
+}
+li{
+    width: 4%;
+    margin:auto;
+    border-bottom: 2px solid black;
+    transition: all 0.2s ease-in-out; 
+    padding: 18px 2px;
+}
+li:hover{
+    border-bottom: 2px solid white;
+}
+a{
+    color: white;
+    text-decoration: none;
+    padding: 18px 2px;
+}
+a:visited{
+    color: white;
+    text-decoration: none;
+}
