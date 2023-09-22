@@ -17,6 +17,7 @@ public class CadastroController {
 
     @PostMapping("cadastroResourcePost")
     public String doPost(CadastroDTO dto,Model model) {
+        dto.id = cadastros.size() + 1L;
         cadastros.add(dto);
         //model.addAttribute("cadastros",cadastros);
         //return "listagem";
