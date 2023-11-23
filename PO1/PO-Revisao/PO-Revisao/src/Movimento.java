@@ -1,20 +1,21 @@
 public class Movimento {
-    final static int SACAR = 0;
-    final static int DEPOSITAR = 1;
-
     private String data;
     private Conta conta;
     private String historico;
     private float valor;
     private int operacao;
     private float saldoAnterior;
-    
+
+    public static final int SACAR = 0;
+    public static final int DEPOSITAR = 1;
+
     public Movimento(String data, Conta conta, String historico, float valor, int operacao) {
         this.data = data;
         this.conta = conta;
         this.historico = historico;
         this.valor = valor;
         this.operacao = operacao;
+        this.saldoAnterior = conta.getSaldo();
     }
 
     public String getData() {
@@ -65,13 +66,13 @@ public class Movimento {
         this.saldoAnterior = saldoAnterior;
     }
 
-    public boolean movimentar(float saldoAnterior){
-        saldoAnterior = conta.getSaldo();
-
-        if(operacao == 0){
-            return true;
-        } else{
+    public boolean movimentar() {
+        try {
+            return conta.movimentar(valor, operacao);
+        } catch (Restricoes e) {
+            System.out.println(e.getMessage());
             return false;
         }
     }
 }
+
