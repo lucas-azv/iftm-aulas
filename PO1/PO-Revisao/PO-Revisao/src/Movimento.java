@@ -5,9 +5,9 @@ public class Movimento {
     private float valor;
     private int operacao;
     private float saldoAnterior;
-
-    public static final int SACAR = 0;
-    public static final int DEPOSITAR = 1;
+    
+    final static int SACAR = 0;
+    final static int DEPOSITAR = 1;
 
     public Movimento(String data, Conta conta, String historico, float valor, int operacao) {
         this.data = data;
@@ -15,11 +15,10 @@ public class Movimento {
         this.historico = historico;
         this.valor = valor;
         this.operacao = operacao;
-        this.saldoAnterior = conta.getSaldo();
     }
 
     public String getData() {
-        return data;
+        return this.data;
     }
 
     public void setData(String data) {
@@ -27,7 +26,7 @@ public class Movimento {
     }
 
     public Conta getConta() {
-        return conta;
+        return this.conta;
     }
 
     public void setConta(Conta conta) {
@@ -35,7 +34,7 @@ public class Movimento {
     }
 
     public String getHistorico() {
-        return historico;
+        return this.historico;
     }
 
     public void setHistorico(String historico) {
@@ -43,7 +42,7 @@ public class Movimento {
     }
 
     public float getValor() {
-        return valor;
+        return this.valor;
     }
 
     public void setValor(float valor) {
@@ -51,7 +50,7 @@ public class Movimento {
     }
 
     public int getOperacao() {
-        return operacao;
+        return this.operacao;
     }
 
     public void setOperacao(int operacao) {
@@ -59,20 +58,19 @@ public class Movimento {
     }
 
     public float getSaldoAnterior() {
-        return saldoAnterior;
+        return this.saldoAnterior;
     }
 
     public void setSaldoAnterior(float saldoAnterior) {
         this.saldoAnterior = saldoAnterior;
     }
-
-    public boolean movimentar() {
-        try {
-            return conta.movimentar(valor, operacao);
-        } catch (Restricoes e) {
-            System.out.println(e.getMessage());
-            return false;
-        }
+    
+    public boolean movimentar(){
+        this.saldoAnterior = this.conta.getSaldo();
+        if(this.operacao==SACAR)
+            return conta.movimentar(valor,SACAR);
+        else
+            return this.conta.movimentar(valor,DEPOSITAR);            
     }
+    
 }
-
